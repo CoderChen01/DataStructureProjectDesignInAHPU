@@ -335,6 +335,13 @@ void DisplayRLSMatrix(RLSMatrix matrix)  // Format sparse matrix output
 }
 
 
+void FreeRLSMatrix(RLSMatrix* matrix)  // Free a RLSMatrix
+{
+	free(matrix->data);
+	free(matrix->rpos);
+}
+
+
 RLSMatrix FastTransposeRLSMatrix(RLSMatrix M)  // Use fast transpose algorithm
 {
 	int tmp = 0;
@@ -922,4 +929,3 @@ BaseMatrix RLSMatrix2BaseMatrix(RLSMatrix matrix)  // Convert row logical link m
 
 	return newMatrix;
 }
-

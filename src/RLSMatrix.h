@@ -21,6 +21,7 @@ typedef struct RLSMatrix  // Row logical link matrix
 
 RLSMatrix CreateRLSMatrix();  // Create a row logical link matrix
 void DisplayRLSMatrix(RLSMatrix matrix);  // Format sparse matrix output
+void FreeRLSMatrix(RLSMatrix* matrix);  // Free a RLSMatrix
 RLSMatrix FastTransposeRLSMatrix(RLSMatrix matrix);  // Use fast transpose algorithm
 RLSMatrix MultiRLSMatrix(RLSMatrix A, RLSMatrix B);  // A and B matrix multiplication
 RLSMatrix AddRLSMatrix(RLSMatrix A, RLSMatrix B);  // Add A and B
