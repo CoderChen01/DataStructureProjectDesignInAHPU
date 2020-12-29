@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#pragma warning( disable : 6386 )
 #include "DiagonalMatrix.h"
 #include "BaseMatrix.h"
 #include "RLSMatrix.h"
@@ -35,6 +36,14 @@ DiagonalMatrix CreateDiagonalMatrix(int isIdentity)  // Create a diagonal matrix
 		if (t <= 1)
 		{
 			printf_s("\033[41;33m\nInput data is illegal,"
+				"please enter again\n\033[0m");
+			continue;
+		}
+
+		if (t > MATRIX_SIDE_MAX)
+		{
+
+			printf_s("\033[41;33m\nOut of range,"
 				"please enter again\n\033[0m");
 			continue;
 		}
@@ -86,6 +95,7 @@ DiagonalMatrix CreateDiagonalMatrix(int isIdentity)  // Create a diagonal matrix
 		matrix.data[i] = data;
 	}
 
+	printf_s("\033[42m\nDiagonal matrix input completed\n\033[0m");
 	return matrix;
 }
 
