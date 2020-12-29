@@ -63,8 +63,9 @@ DiagonalMatrix CreateDiagonalMatrix(int isIdentity)  // Create a diagonal matrix
 	{
 		while (TRUE)
 		{
-			printf_s("\nPlease enter the \033[31m%dth\033[0m non-zero element(eg: 2): ", i));
-			retval = scnaf_s("%lf", &data);
+			printf_s("\nPlease enter the \033[31m%dth\033[0m non-zero element(eg: 2): ", i);
+			retval = scanf_s("%lf", &data);
+			flush();
 
 			if (retval < 1)
 			{
@@ -105,7 +106,7 @@ RLSMatrix DiagonalMatrix2RLSMatrix(DiagonalMatrix matrix)  // Diagonal matrix to
 		.t = 0
 	};
 
-	res.r = res.c = matrix.t;
+	res.r = res.c = res.t = matrix.t;
 	res.data = (Triple*)malloc(sizeof(Triple) * (matrix.t + 1));
 	res.rpos = (int*)malloc(sizeof(int) * (matrix.t + 1));
 	res.data[0].i = 0;

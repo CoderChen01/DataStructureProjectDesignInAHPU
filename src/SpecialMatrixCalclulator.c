@@ -12,14 +12,24 @@
 
 int main()
 {
-	DiagonalMatrix matrix1 = CreateDiagonalMatrix();
+	DiagonalMatrix matrix1 = CreateDiagonalMatrix(FALSE);
+	DiagonalMatrix matrix2 = CreateDiagonalMatrix(TRUE);
 
-	BaseMatrix matrix2 = RLSMatrix2BaseMatrix(matrix1);
+	RLSMatrix matrix3 = DiagonalMatrix2RLSMatrix(matrix1);
+	RLSMatrix matrix4 = DiagonalMatrix2RLSMatrix(matrix2);
+
+	DisplayRLSMatrix(matrix3);
+	DisplayRLSMatrix(matrix4);
 
 
-	BaseMatrix res = MatrixInverse(matrix2);
+	RLSMatrix matrix5 = MultiRLSMatrix(matrix3, matrix4);
 
-	DisplayBaseMatrix(res);
+	//BaseMatrix matrix2 = DiagonalMatrix2BaseMatrix(matrix1);
+
+	DisplayRLSMatrix(matrix5);
+	//BaseMatrix res = MatrixInverse(matrix2);
+
+	//DisplayBaseMatrix(res);
 
 	return 0;
 }
