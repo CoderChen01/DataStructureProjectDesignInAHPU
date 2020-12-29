@@ -48,16 +48,24 @@ int GetUserChoose(int isTypeChoose)
 
 		if (retval < 1)
 		{
+			system("cls");
 			printf_s("\033[41;33m\nInput error,"
 				"please enter again\n\033[0m");
+			Pause();
+			system("cls");
+			Menu(isTypeChoose, FALSE);
 			continue;
 		}
 
 		if (choose < 0 || choose > 6 && !isTypeChoose
 			|| choose > 5 && isTypeChoose)
 		{
+			system("cls");
 			printf_s("\033[41;33m\nInput data is illegal,"
 				"please enter again\n\033[0m");
+			Pause();
+			system("cls");
+			Menu(isTypeChoose, FALSE);
 			continue;
 		}
 
