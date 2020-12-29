@@ -1,4 +1,5 @@
 #pragma warning( disable : 6386 )
+#pragma warning( disable : 6385 )
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -214,7 +215,7 @@ RLSMatrix CreateRLSMatrix()  // Create a row logical link matrix
 						if (update == 'y' || update == '\n')
 						{
 							matrix.data[tmp].e = e;
-							flag = FALSE;
+							flag = TRUE;
 							break;
 						}
 						else if (update == 'N')

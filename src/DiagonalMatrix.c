@@ -1,7 +1,8 @@
+#pragma warning( disable : 6386 )
+#pragma warning( disable : 6385 )
 #include <stdio.h>
 #include <stdlib.h>
 
-#pragma warning( disable : 6386 )
 #include "DiagonalMatrix.h"
 #include "BaseMatrix.h"
 #include "RLSMatrix.h"
@@ -22,7 +23,7 @@ DiagonalMatrix CreateDiagonalMatrix(int isIdentity)  // Create a diagonal matrix
 	int t = 0;
 	while (TRUE)
 	{
-		printf_s("\nPlease enter the number of non-zero elements(eg: 4): ");
+		printf_s("\nPlease enter the number of elements(eg: 4): ");
 		retval = scanf_s("%d", &t);
 		flush();
 
@@ -72,20 +73,13 @@ DiagonalMatrix CreateDiagonalMatrix(int isIdentity)  // Create a diagonal matrix
 	{
 		while (TRUE)
 		{
-			printf_s("\nPlease enter the \033[31m%dth\033[0m non-zero element(eg: 2): ", i);
+			printf_s("\nPlease enter the \033[31m%dth\033[0m element(eg: 2): ", i);
 			retval = scanf_s("%lf", &data);
 			flush();
 
 			if (retval < 1)
 			{
 				printf_s("\033[41;33m\nInput error,"
-					"please enter again\n\033[0m");
-				continue;
-			}
-
-			if (!data)
-			{
-				printf_s("\033[41;33m\nInput data is illegal,"
 					"please enter again\n\033[0m");
 				continue;
 			}
@@ -116,21 +110,39 @@ RLSMatrix DiagonalMatrix2RLSMatrix(DiagonalMatrix matrix)  // Diagonal matrix to
 		.t = 0
 	};
 
-	res.r = res.c = res.t = matrix.t;
-	res.data = (Triple*)malloc(sizeof(Triple) * (matrix.t + 1));
+	res.r = res.c = matrix.t;
 	res.rpos = (int*)malloc(sizeof(int) * (matrix.t + 1));
+	res.rpos[0] = 0;
+
+	int t = 0;
+	int tmp = 0;
+	int zeroNum = 0;
+	for (t = 1; t <= matrix.t; t++)
+	{
+		if (!matrix.data[t])
+		{
+			zeroNum++;
+		}
+	}
+
+	res.t = matrix.t - zeroNum;
+	res.data = (Triple*)malloc(sizeof(Triple) * (res.t + 1));
 	res.data[0].i = 0;
 	res.data[0].j = 0;
 	res.data[0].e = 0;
 
-	int t = 0;
 	for (t = 1; t <= matrix.t; t++)
 	{
-		res.data[t].e = matrix.data[t];
-		res.data[t].i = t;
-		res.data[t].j = t;
+		if (!matrix.data[t])
+		{
+			res.rpos[t] = 0;
+			continue;
+		}
+		res.data[++tmp].e = matrix.data[t];  // Filter zero elements
+		res.data[tmp].i = t;
+		res.data[tmp].j = t;
 		
-		res.rpos[t] = t;
+		res.rpos[t] = tmp;
 	}
 
 	return res;

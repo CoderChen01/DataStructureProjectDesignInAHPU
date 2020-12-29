@@ -16,6 +16,5 @@ void FreeTriangularMatrix(TriangularMatrix* matrix);  // Free a Triangular matri
 RLSMatrix TriangularMatrix2RLSMatrix(TriangularMatrix matrix);  // Triangular matrix to RLSMatrix
 BaseMatrix TriangularMatrix2BaseMatrix(TriangularMatrix matrix);  // Triangular matrix to base matrix
 
-
 #endif // !TRIANGULAR_MATRIX_H
 

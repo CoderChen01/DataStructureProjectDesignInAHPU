@@ -1,4 +1,5 @@
 #pragma warning( disable : 6386 )
+#pragma warning( disable : 6385 )
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -116,13 +117,6 @@ TriangularMatrix CreateTriangularMatrix()  // Create a triangular matrix
 							"please enter again\n\033[0m");
 						continue;
 					}
-
-					if (!data)
-					{
-						printf_s("\033[41;33m\nInput data is illegal,"
-							"please enter again\n\033[0m");
-						continue;
-					}
 					
 					break;
 				}
@@ -147,13 +141,6 @@ TriangularMatrix CreateTriangularMatrix()  // Create a triangular matrix
 					if (retval < 1)
 					{
 						printf_s("\033[41;33m\nInput error,"
-							"please enter again\n\033[0m");
-						continue;
-					}
-
-					if (!data)
-					{
-						printf_s("\033[41;33m\nInput data is illegal,"
 							"please enter again\n\033[0m");
 						continue;
 					}
@@ -190,22 +177,52 @@ RLSMatrix TriangularMatrix2RLSMatrix(TriangularMatrix matrix)  // Triangular mat
 
 	res.r = matrix.r;
 	res.c = matrix.c;
-	res.t = ((matrix.r * matrix.c) + matrix.r) / 2;
-	res.data = (Triple*)malloc(sizeof(Triple) * (res.t + 1));
 	res.rpos = (int*)malloc(sizeof(int) * (res.r + 1));
+	res.rpos[0] = 0;
 
 	int i = 0,
 		j = 0,
 		t = 0,
+		tmp = 0,
+		zeroNum = 0,
 		pos = 0;
+
+	tmp = ((matrix.r * matrix.c) + matrix.r) / 2;
+	/*
+	Find the number of zero elements
+	to facilitate the allocation of memory below
+	*/
+	for (pos = 1; pos <= tmp; pos++)
+	{
+		if (!matrix.data[pos])
+		{
+			zeroNum++;
+		}
+	}
+
+	res.t = tmp- zeroNum;
+	res.data = (Triple*)malloc(sizeof(Triple) * (res.t + 1));
+
 	if (matrix.isTop)
 	{
 		for (i = 1; i <= matrix.r; i++)
 		{
+			/*
+			If this condition is true,
+			it means that the elements of row i-1 are all 0
+			*/
+			if (res.rpos[i - 1] == t + 1)
+			{
+				res.rpos[i - 1] = 0;
+			}
 			res.rpos[i] = t + 1;
 			for (j = i; j <= matrix.c; j++)
 			{
 				pos = GetTrianglularMatrixElemPos(i, j, TRUE);
+				if (!matrix.data[pos])
+				{
+					continue;
+				}
 				res.data[++t].e = matrix.data[pos];
 				res.data[t].i = i;
 				res.data[t].j = j;
@@ -216,10 +233,18 @@ RLSMatrix TriangularMatrix2RLSMatrix(TriangularMatrix matrix)  // Triangular mat
 	{
 		for (i = 1; i <= matrix.r; i++)
 		{
+			if (res.rpos[i - 1] == t + 1)
+			{
+				res.rpos[i - 1] = 0;
+			}
 			res.rpos[i] = t + 1;
 			for (j = 1; j <= i; j++)
 			{
-				pos = GetTrianglularMatrixElemPos(i, j, TRUE);
+				pos = GetTrianglularMatrixElemPos(i, j, FALSE);
+				if (!matrix.data[pos])
+				{
+					continue;
+				}
 				res.data[++t].e = matrix.data[pos];
 				res.data[t].i = i;
 				res.data[t].j = j;

@@ -11,7 +11,7 @@ typedef struct DiagonalMatrix  // Diagonal matrix storage structure
 } DiagonalMatrix;
 
 
-DiagonalMatrix CreateDiagonalMatrix();  // Create a diagonal matrix
+DiagonalMatrix CreateDiagonalMatrix(int isIdentity);  // Create a diagonal matrix
 void FreeDiagonalMatrix(DiagonalMatrix* matrix);  // Free a diagonal matrix
 RLSMatrix DiagonalMatrix2RLSMatrix(DiagonalMatrix matrix);  // Diagonal matrix to RLSMatrix
 BaseMatrix DiagonalMatrix2BaseMatrix(DiagonalMatrix matrix);  // Diagonal matrix 2 base matrix
