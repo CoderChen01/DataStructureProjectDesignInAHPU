@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "DiagonalMatrix.h"
+#include "BaseMatrix.h"
 #include "RLSMatrix.h"
 #include "BaseData.h"
 #include "BaseFlag.h"
@@ -124,3 +125,26 @@ RLSMatrix DiagonalMatrix2RLSMatrix(DiagonalMatrix matrix)  // Diagonal matrix to
 	return res;
 }
 
+
+BaseMatrix DiagonalMatrix2BaseMatrix(DiagonalMatrix matrix)  // Diagonal matrix 2 base matrix
+{
+	BaseMatrix res = InitBaseMatrix(matrix.t, matrix.t);
+
+	int i = 0,
+		j = 0;
+
+	for (i = 1; i <= matrix.t; i++)
+	{
+		for (j = 1; j <= matrix.t; j++)
+		{
+			if (i == j)
+			{
+				PutBaseMatrixElem(&res, i, j, matrix.data[i]);
+				continue;
+			}
+			PutBaseMatrixElem(&res, i, j, 0);
+		}
+	}
+
+	return res;
+}

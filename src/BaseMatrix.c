@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 #include "BaseMatrix.h"
 #include "BaseData.h"
 #include "BaseFlag.h"
@@ -268,4 +267,3 @@ BaseMatrix MatrixInverse(BaseMatrix matrix)  // Find the inverse of a matrix
 
 	return InverseMatrix;
 }
-

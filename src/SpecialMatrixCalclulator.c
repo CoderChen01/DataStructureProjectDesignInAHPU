@@ -12,7 +12,8 @@
 
 int main()
 {
-	RLSMatrix matrix1 = CreateRLSMatrix();
+	DiagonalMatrix matrix1 = CreateDiagonalMatrix();
+
 	BaseMatrix matrix2 = RLSMatrix2BaseMatrix(matrix1);
 
 
