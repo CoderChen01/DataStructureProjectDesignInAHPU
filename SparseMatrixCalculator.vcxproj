@@ -142,6 +142,7 @@
     <ClInclude Include="src\BaseData.h" />
     <ClInclude Include="src\BaseFlag.h" />
     <ClInclude Include="src\BaseMatrix.h" />
+    <ClInclude Include="src\ConsoleStyle.h" />
     <ClInclude Include="src\DiagonalMatrix.h" />
     <ClInclude Include="src\flush.h" />
     <ClInclude Include="src\RLSMatrix.h" />
@@ -150,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BaseMatrix.c" />
+    <ClCompile Include="src\ConsoleStyle.c" />
     <ClCompile Include="src\DiagonalMatrix.c" />
     <ClCompile Include="src\flush.c" />
     <ClCompile Include="src\RLSMatrix.c" />

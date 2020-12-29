@@ -39,6 +39,9 @@
     <ClInclude Include="src\BaseMatrix.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\ConsoleStyle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SymmetricMatrix.c">
@@ -60,6 +63,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\TriangularMatrix.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConsoleStyle.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

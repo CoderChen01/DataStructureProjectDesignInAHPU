@@ -702,7 +702,7 @@ RLSMatrix AddRLSMatrix(RLSMatrix A, RLSMatrix B)  // Add A and B
 	{
 		printf_s("\033[41;33m\nDoes not meet the matrix addition condition\033[0m");
 		printf_s("\033[43;37m\nThe number of rows and columns"
-			"of the two matrices must be equal"
+			" of the two matrices must be equal"
 			"in order to perform the addition operation\n\033[0m");
 		return C;
 	}
